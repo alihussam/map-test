@@ -1,0 +1,215 @@
+<div class="main-db">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>DASHBOARD</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container-fluid mt-2">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <!-- <span class *ngIf="currentExpiredSessionObjects.length <= 0"><strong> <h3>No
+                                Data</h3></strong></span> -->
+                            <h3>{{fullBinCountlength}}</h3>
+                            <p>Full Bins</p>
+                        </div>
+                        <div class="icon">
+
+                            <i class="fas fa-dumpster"></i>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <!-- <span *ngIf="currentExpiredSessionObjects.length <= 0"><strong> <h3>No
+                                Data</h3></strong></span> -->
+                            <!-- <span *ngIf="currentExpiredSessionObjects.length > 0"><strong><h3>{{halfFullBinCountlength}}</h3></strong></span> -->
+
+                            <h3>{{halfFullBinCountlength}}</h3>
+                            <p>Partial Full Bins</p>
+                        </div>
+                        <div class="icon">
+
+                            <i class="fas fa-dumpster"></i>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <!-- <span *ngIf="currentExpiredSessionObjects.length <= 0"><strong><h3> No
+                                Data</h3></strong></span> -->
+                            <h3>{{emptyBinCountlength}}</h3>
+                            <p style="color: #FFFF;">Empty Bins</p>
+                        </div>
+                        <div class="icon">
+
+                            <i class="fas fa-dumpster"></i>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>{{totalcount}}</h3>
+                            <p>Alerts</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-dumpster"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHART FOR BIN STATUS -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Bin Status</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart">
+                                <div class="chartjs-size-monitor">
+                                    <div class="chartjs-size-monitor-expand">
+                                        <div class=""></div>
+                                    </div>
+                                    <div class="chartjs-size-monitor-shrink">
+                                        <div class=""></div>
+                                    </div>
+                                </div>
+                                <canvas id="binStatusChart" class="img img-responsive" style="width: 2000px;"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CHART FOR ALERTS -->
+
+                <div class="col-md-6">
+
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Total Alerts</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart">
+                                <div class="chartjs-size-monitor">
+                                    <div class="chartjs-size-monitor-expand">
+                                        <div class=""></div>
+                                    </div>
+                                    <div class="chartjs-size-monitor-shrink">
+                                        <div class=""></div>
+                                    </div>
+                                </div>
+                                <canvas id="alertChart" class="img img-responsive" style="width: 2000px;"></canvas>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CHART FOR ACTIVE STATUS -->
+                <div class="col-md-6">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Active Status</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart">
+                                <div class="chartjs-size-monitor">
+                                    <div class="chartjs-size-monitor-expand">
+                                        <div class=""></div>
+                                    </div>
+                                    <div class="chartjs-size-monitor-shrink">
+                                        <div class=""></div>
+                                    </div>
+                                </div>
+                                <canvas id="statusChart" class="img img-responsive" style="width: 2000px;"></canvas>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CHART FOR SENSOR TYPES -->
+                <div class="col-md-6">
+
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Sensor Type</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart">
+                                <div class="chartjs-size-monitor">
+                                    <div class="chartjs-size-monitor-expand">
+                                        <div class=""></div>
+                                    </div>
+                                    <div class="chartjs-size-monitor-shrink">
+                                        <div class=""></div>
+                                    </div>
+                                </div>
+                                <canvas id="sensorTypeChart" class="img img-responsive" style="width: 2000px;"></canvas>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!--  -->
+
+    </div>

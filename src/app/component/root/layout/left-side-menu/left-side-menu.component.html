@@ -1,0 +1,10 @@
+<div class="left-side">
+  <div class="left-side">
+    <a routerLink="/report" [ngClass]="{'active': router && router.url === '/report'}" (click)="onMenuSelect('report')">
+      <span class=""><i class="fa fa-file-text mr-2" aria-hidden="true"></i> Reports</span>
+    </a>
+    <a routerLink="/map" [ngClass]="{'active': router && router.url === '/map'}" (click)="onMenuSelect('map')">
+      <span class=""><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Map </span>
+    </a>
+  </div>
+</div>

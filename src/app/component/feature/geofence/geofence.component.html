@@ -1,0 +1,194 @@
+<nav class="main-header navbar navbar-expand navbar-black navbar-dark " style="top:60px">
+  <h1>
+    <span class="orange-text">Geofence</span>
+  </h1>
+</nav>
+
+
+<div class="main-db gap-top">
+  <!-- <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-6">
+        <h3 class="mb-3"><i class="fas fa-check-circle mr-1"></i>GEOFENCE</h3>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="container-fluid">
+    <form>
+      <div class="row">
+        <div class="col-xl-3">
+          <div class="mb-1">Name</div>
+          <input
+            type="text"
+            class="form-control form-control-sm input-custom"
+          />
+        </div>
+        <div class="col-xl-3">
+          <div class="mb-1">Description</div>
+          <input
+            type="text"
+            class="form-control form-control-sm input-custom"
+          />
+        </div>
+        <div class="col-xl-3">
+          <div class="mb-1">Dealer</div>
+          <input
+            type="text"
+            class="form-control form-control-sm input-custom"
+          />
+        </div>
+
+        <div class="col-xl-3">
+          <button
+            class="btn-sm float-right btn-light ml-1"
+            style="margin-top: 24px !important;"
+            type="reset"
+          >
+            <i class="fa fa-refresh mr-1"></i>
+            Reset
+          </button>
+          <button
+            class="btn btn-success btn-sm float-right"
+            style="margin-top: 24px !important;"
+            (click)="addGeofenceDialog()"
+          >
+            <i class="fas fa-plus mr-1"></i> Add Geofence
+          </button>
+          <button
+            class="btn btn-success btn-sm float-right mr-1"
+            style="margin-top: 24px !important;"
+            (click)="fileUploaderDialog()"
+            hidden
+          >
+            <i class="fas fa-save mr-1"></i> Upload File
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="db-block" style="height: auto !important;">
+          <h4>
+            <i class="fa fa-database mr-2" aria-hidden="true"></i>
+            <span> GEOFENCE VIEW</span>
+            <a type="button" class="float-right">
+              <i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i> PDF
+            </a>
+            <a type="button" class="float-right mr-3">
+              <i class="fa fa-file-excel-o mr-1" aria-hidden="true"></i> Excel
+            </a>
+          </h4>
+          <div class="mt-4">
+            <div class="table-responsive">
+              <div class="mat-elevation-z0">
+                <table
+                  mat-table
+                  [dataSource]="dataSource"
+                  class="gridData"
+                  matSort
+                >
+                  <ng-container matColumnDef="geofenceName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Name
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.geofenceName }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Description
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.description }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="dealerName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Dealer
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.dealerName }}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef="let element">
+                      <button
+                        class="btn btn-sm btn-success mr-2"
+                        (click)="geofenceDetail(element)"
+                      >
+                        <i class="fas fa-plus mr-1"></i>View Geofence Detail
+                      </button>
+
+                      <button
+                        class="btn btn-sm btn-success mr-2"
+                        (click)="mapView(element)"
+                      >
+                        <i class="fa-map-marker-alt fas mr-2"></i>Map View
+                      </button>
+
+                      <button
+                        mat-icon-button
+                        matTooltip="Click to Edit"
+                        class="iconbutton text-warning"
+                      >
+                        <mat-icon
+                          aria-label="Edit"
+                          (click)="updateGeofenceDialog(element)"
+                          >edit</mat-icon
+                        >
+                      </button>
+
+                      <button
+                        mat-icon-button
+                        matTooltip="Click to Delete"
+                        class="iconbutton text-danger"
+                      >
+                        <mat-icon
+                          aria-label="Delete"
+                          (click)="deleteGeofence(element)"
+                          >delete</mat-icon
+                        >
+                      </button>
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                  ></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-xl-4">
+              <div class="input-group input-group-sm mt-2">
+                <input
+                  type="text"
+                  class="form-control input-custom"
+                  (keyup)="applyFilter($event)"
+                  placeholder="Search"
+                />
+              </div>
+            </div>
+
+            <div class="col-xl-8">
+              <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

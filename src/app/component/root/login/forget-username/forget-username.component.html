@@ -1,0 +1,38 @@
+<div class="header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-12">
+        <h2 class="text-center my-4">
+          <img src="assets/images/logo.png" height="50" /> St. Pete Beach
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="padding-top: 200px;">
+  <div class="row d-flex justify-content-center">
+    <div class="col-xl-8">
+      <div class="forgot box-content text-center py-5">
+        <img src="assets/images/fp.svg" width="100" />
+        <h2 class="mb-5">Forgot Username</h2>
+
+        <form [formGroup]="form" (ngSubmit)="sendEmail()">
+          <input type="email" class="form-control form-control-lg input-custom mb-4" placeholder="Your email address"
+            formControlName="emailAddress" id="emailAddress" autocomplete="off" />
+          <div class="error" *ngIf="
+              form.controls['emailAddress'].hasError('required') &&
+              form.controls['emailAddress'].touched">
+            <h6 class="text-danger mt-1">Field is required</h6>
+          </div>
+          <button class="btn orange" type="submit" [disabled]="!form.valid">
+            <i class="fas fa-redo-alt mr-1"></i> Reset username
+          </button>
+          <div class="text-center mt-3">
+            <a class="btn btn-light" style="text-decoration: underline;" routerLink="/login">Back To Login Page</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

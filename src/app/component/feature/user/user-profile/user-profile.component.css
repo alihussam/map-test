@@ -1,0 +1,14 @@
+.user-image {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 0px 0px 20px;
+  background: #f8f8f8;
+}
+.user-image i {
+  font-size: 50px;
+}/*# sourceMappingURL=user-profile.component.css.map */

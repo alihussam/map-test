@@ -1,0 +1,26 @@
+version: "3"
+services:
+  binwise_service:
+    container_name: binwise_frontend
+    build:
+      context: .
+      dockerfile: Dockerfile-staging
+    networks:
+      - default_vm_network
+    ports:
+      - "9008:443"
+    labels:
+      - autoheal=true
+    healthcheck:
+      test: ["CMD", "curl", "-k", "https://localhost:443/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
+networks :
+  default_vm_network:
+    external: true

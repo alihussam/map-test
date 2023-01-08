@@ -1,0 +1,66 @@
+.logo {
+  margin-bottom: 0px;
+  height: 50px;
+}
+
+.color-name {
+  h4 {
+    float: right;
+    padding: 0px 8px;
+  }
+  .cc {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+  }
+}
+
+.title-content {
+  & h1,
+  & h2 {
+    padding-top: 10px;
+  }
+}
+.logo-client {
+  // background: #26293b;
+  padding: 0;
+  position: fixed;
+  top: 0px;
+  left: 52.5%;
+  margin-left: -59px;
+  z-index: 6;
+  & img {
+    width: 98px;
+  }
+ 
+  
+}
+
+.dropdown-item {
+  color: #ccc;
+}
+.dropdown-menu {
+  background-color: #212434;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  background-color: #666;
+}
+
+.box-content-unRead {
+  border: 1px solid #313452;
+  background: #3f4e52;
+}
+
+.navigation {
+  & a {
+    padding: 0px 10px 5px;
+    font-size: 18px;
+    float: right;
+  }
+  & a:hover {
+    color: #ebb21b;
+  }
+}

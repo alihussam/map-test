@@ -1,0 +1,30 @@
+<h4 mat-dialog-title><i class="fas fa-plus mr-1"></i> Add Preference</h4>
+
+<mat-dialog-content class="mat-typography">
+    <form class="example-form input-content" [formGroup]="form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Name</mat-label>
+            <input autocomplete="off" matInput formControlName="name" autocomplete="off">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Value</mat-label>
+            <input autocomplete="off" matInput formControlName="value" autocomplete="off">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Description</mat-label>
+            <input autocomplete="off" matInput formControlName="description" autocomplete="off">
+        </mat-form-field>
+
+        <mat-checkbox formControlName="active">Active</mat-checkbox>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="btn btn-success  float-right mr-2" type="submit" [disabled]="!form.valid" (click)="addPreferences()">
+        <i class="fas fa-plus mr-1"></i> Add</button>
+
+    <button class="btn btn-light  float-right" (click)="closeDialog()">
+        <i class="fas fa-times mr-1"></i> Cancel</button>
+</mat-dialog-actions>

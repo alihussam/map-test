@@ -1,0 +1,77 @@
+<h4 mat-dialog-title><i class="fas fa-plus mr-1"></i> Add Device</h4>
+
+<mat-dialog-content class="mat-typography">
+<div>
+    <form class="example-form" [formGroup]="form">
+        
+        <mat-form-field class="example-full-width">
+            <mat-label>Device Name</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field [hidden]="checkRole()" class="example-full-width">
+            <mat-label>Oranization</mat-label>
+            <mat-select formControlName="organizationid" (selectionChange)="setSelectedOrganization($event.value)">
+                <mat-option *ngFor="let organization of allOrganizations" [value]="organization.id">
+                    {{organization.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Dealer</mat-label>
+            <mat-select formControlName="dealerid" (selectionChange)="setSelectedDealerId($event.value)">
+                <mat-option *ngFor="let dealers of allDealers" [value]="dealers.id">
+                    {{dealers.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Device type</mat-label>
+            <mat-select formControlName="devicetypeid" (selectionChange)="setSelectedDeviceTypeName($event.value)">
+                <mat-option *ngFor="let allDeviceType of allDeviceTypes" [value]="allDeviceType.id" >
+                    {{allDeviceType.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="device_type_name === 'Parking Sensor' && dealerSelected">
+            <mat-form-field class="example-full-width">
+                <mat-label>Parking Spot</mat-label>
+                <mat-select formControlName="parkingspotid">
+                    <mat-option *ngFor="let parkingspot of allParkingspot" [value]="parkingspot.id">
+                        {{parkingspot.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        
+        <div  *ngIf="device_type_name === 'Tracker' && dealerSelected">
+            <mat-form-field class="example-full-width">
+                <mat-label>Vehicle</mat-label>
+                <mat-select formControlName="vehicleid">
+                    <mat-option *ngFor="let vehicle of allVehicle" [value]="vehicle.id">
+                        {{vehicle.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Dev Eui</mat-label>
+            <input matInput formControlName="devEUI">
+        </mat-form-field>
+        
+    </form>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+    <button class="btn btn-success  float-right mr-2"  type="submit" [disabled]="!(form.valid && correctDeviceType)"  (click)="addDeviceData()"><i class="fas fa-plus mr-1"></i> Add Device</button> 
+
+    <button class="btn btn-light  float-right" 
+    (click)="closeDialog()"><i class="fas fa-times mr-1" ></i> Cancel</button> 
+    
+  </mat-dialog-actions>
+

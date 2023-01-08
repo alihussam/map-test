@@ -1,0 +1,32 @@
+<mat-dialog-content class="">
+  <form class="example-form" >
+    <h3 class="mb-3">
+      <i class="fas fa-check-circle mr-1"></i> Notification Information
+    </h3>
+    <button class="btn btn-success float-right" (click)="markAllAsRead()">
+      <i class="fas fa-check-circle mr-1"></i> Mark all as Read</button>
+
+    <div class="table-responsive">
+      <table class="container-fluid mt-2">
+        <tr *ngFor="let notification of notificationData">
+          <td class="col-12">
+            <a (click)="notificationInfoDialog(notification, true)" [ngClass]= "getNotificationClass(notification.isRead)" >
+              <i *ngIf="notification.text.toString().toLowerCase().includes('fire')" class="fas fa-fire mr-2"></i>
+              <i *ngIf="notification.text.toString().toLowerCase().includes('fallen')" class="fas fa-fill mr-2"></i> {{notification.sensorName}}
+              <span class="float-right text-muted text-sm"><strong>{{notification.text}}</strong></span>
+              <br/>
+              <span class="float left text-muted text-sm">{{getRelativeTime(notification.deviceTimeInMillis)}}</span>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <!-- <button class="btn btn-success float-right mr-2" type="submit" [disabled]="!form.valid" (click)="saveAction()">
+      <i class="fas fa-check-circle mr-1"></i> Save</button> -->
+  <button class="btn btn-light float-right" (click)="closeDialog()">
+    <i class="fas fa-times mr-1"></i> Close</button>
+</mat-dialog-actions>

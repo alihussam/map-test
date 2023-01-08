@@ -1,0 +1,42 @@
+.agm-map {
+  position: fixed;
+  width: 78%;
+  height: 91%;
+}
+
+.box-content1 {
+  border: 1px solid #313452 !important;
+  background: #26293b;
+  padding: 10px;
+  color: #ccc;
+  align-content: inherit;
+  width: 62%;
+  height: 85%;
+}
+
+.color-name h4 {
+  float: right;
+  padding: 0px 8px;
+}
+.color-name .cc {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.expired {
+  width: 31%;
+  position: fixed;
+  background: #212434;
+  height: calc(100% - 125px);
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.myPanelClass {
+  margin-top: 10%;
+}/*# sourceMappingURL=map.component.css.map */

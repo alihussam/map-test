@@ -1,0 +1,309 @@
+<div class="main-db ">
+
+  <div class="content-wrapper">
+
+
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Bin Spot Configuration</h1>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="content">
+      <div class="container-fluid mt-2">
+        <div class="row">
+          <div class="col-xl-6">
+            <div class=" ">
+              <input type="text" class="form-control form-control-sm input-custom" (keyup)="applyFilter($event)"
+                placeholder="Search" />
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <button class="btn btn-sm btn-success float-right" (click)="addParkingSpotDialog()">
+              <i class="fas fa-plus mr-1"></i> Add Bin Spot
+            </button>
+            <!-- <button
+          class="btn btn-sm btn-success float-right mr-2"
+          (click)="fileUploaderDialog()"
+        >
+          <i class="fas fa-save mr-1"></i> Upload File
+        </button> -->
+
+            <!-- <button class="btn btn-sm btn-success float-right mr-2" (click)="sampleCSV()">
+              <i class="fa fa-download mr-1"></i> Sample CSV
+            </button> -->
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid mt-2">
+        <div class="row">
+          <div class="col-12 mt-2">
+            <div class="db-block" style="height: auto !important;">
+              <!-- <h4>
+            <i class="fa fa-database mr-2" aria-hidden="true"></i>
+            <span> BIN CONFIQ VIEW</span>
+             <a type="button" class="float-right">
+              <i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i> PDF
+            </a>
+            <a type="button" class="float-right mr-3">
+              <i class="fa fa-file-excel-o mr-1" aria-hidden="true"></i> Excel
+            </a>
+          </h4> -->
+              <div class="table-responsive">
+                <table mat-table [dataSource]="dataSource" class="gridData" matSort>
+
+
+
+
+                  <ng-container matColumnDef="organizationName">
+                    <th [hidden]="checkRole()" mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Organization Name</th>
+                    <td [hidden]="checkRole()" mat-cell *matCellDef="let element">
+
+
+                      <span [hidden]="checkRole()" *ngIf="element.organizationName">{{element.organizationName}}</span>
+
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="binName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Bin Name
+                    </th>
+                    <td mat-cell *matCellDef="let element">{{ element.binName }}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="latitude">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Latitude
+                    </th>
+                    <td mat-cell *matCellDef="let element">{{ element.latitude }}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="longitude">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Longitude
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.longitude }}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="deviceId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Device Id
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      <span *ngIf="element.deviceId; else notAvailable">{{
+                        element.devEui || element.deviceId
+                        }}</span>
+                      <ng-template #notAvailable>
+                        N/A
+                      </ng-template>
+                    </td>
+                  </ng-container>
+
+
+
+
+
+                  <!-- AMK -->
+
+                  <ng-container matColumnDef="percentageOfFull">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Percentage of Full
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      <span *ngIf="element.percentageOfFull; else notAvailable">{{
+                        element.percentageOfFull
+                        }}</span>
+                      <ng-template #notAvailable>
+                        N/A
+                      </ng-template>
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="percentageOfEmpty">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Percentage of Empty
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      <span *ngIf="element.percentageOfEmpty; else notAvailable">{{
+                        element.percentageOfEmpty
+                        }}</span>
+                      <ng-template #notAvailable>
+                        N/A
+                      </ng-template>
+                    </td>
+                  </ng-container>
+
+
+
+                  <ng-container matColumnDef="frequentlyUsedLimit">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Frequently used limit
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      <span *ngIf="element.frequentlyUsedLimit; else notAvailable">{{
+                        element.frequentlyUsedLimit
+                        }}</span>
+                      <ng-template #notAvailable>
+                        N/A
+                      </ng-template>
+                    </td>
+                  </ng-container>
+
+<!--  -->
+
+<ng-container matColumnDef="sensorType">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>
+    Sensor Type
+  </th>
+  <td mat-cell *matCellDef="let element">
+    <span *ngIf="element.sensorType; else notAvailable">{{
+      element.sensorType
+      }}</span>
+    <ng-template #notAvailable>
+      N/A
+    </ng-template>
+  </td>
+</ng-container>
+
+                  <!--  -->
+
+                  <ng-container matColumnDef="binTypeName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Bin Type
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      <span *ngIf="element.binTypeName; else notAvailable">{{
+                        element.binTypeName
+                        }}</span>
+                      <ng-template #notAvailable>
+                        N/A
+                      </ng-template>
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                  </ng-container>
+
+
+
+
+                  <!-- /AMK -->
+
+                  <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef="let element">
+                      <!-- <button
+                  class="btn btn-sm btn-success mr-2"
+                  (click)="mapView(element)"
+                >
+                  <i class="fa-map-marker-alt fas mr-2"></i>Map View
+                </button> -->
+
+                      <button mat-icon-button matTooltip="Click to Edit" class="iconbutton text-warning">
+                        <mat-icon aria-label="Edit" (click)="updateParkingSpotDialog(element)">edit</mat-icon>
+                      </button>
+
+                      <!-- <button
+                  mat-icon-button
+                  matTooltip="Click to Delete"
+                  class="iconbutton text-danger"
+                >
+                  <mat-icon
+                    aria-label="Delete"
+                    (click)="deleteParkingSpot(element)"
+                    >delete</mat-icon
+                  >
+                </button> -->
+
+
+
+                      <!-- <button mat-icon-button  matTooltip="Click to Delete" (click)="getTempId(element)" class="iconbutton text-danger" data-toggle="modal" data-target="#deletePrompt">
+                <mat-icon aria-label="Delete">Delete</mat-icon>
+              </button>   -->
+
+
+                      <!-- model -->
+
+                      <!-- <div class="modal fade" id="deletePrompt" tabindex="-1" role="dialog" aria-labelledby="deletePromptLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content" style="margin: inherit">
+                    <div class="modal-header">
+                      <h5 class="modal-title orange-text" id="deletePromptLabel">Delete Bin Spot Configuration </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to delete Bin Spot Configuration ?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-danger" (click)="deleteParkingSpot(tempId)" data-dismiss="modal">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+
+
+                      <!--  -->
+
+
+                      <button mat-icon-button matTooltip="Click to Delete" (click)="getTempId(element)"
+                        class="iconbutton text-danger" data-toggle="modal" data-target="#deletePrompt">
+                        <mat-icon aria-label="Delete">delete</mat-icon>
+                      </button>
+
+                      <!-- model -->
+
+                      <div class="modal fade" id="deletePrompt" tabindex="-1" role="dialog"
+                        aria-labelledby="deletePromptLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content" style="margin: inherit">
+                            <div class="modal-header">
+                              <h5 class="modal-title orange-text" id="deletePromptLabel">Delete Bin Spot Configuration
+                              </h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              Are you sure you want to delete Bin Spot Configuration ?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-danger" (click)="deleteParkingSpot(tempId)"
+                                data-dismiss="modal">Confirm</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
+
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+              </div>
+              <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

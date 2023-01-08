@@ -1,0 +1,67 @@
+<div class="main-db ">
+
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>User Profile</h1>
+          </div>
+        </div>
+      </div>
+
+
+    </section>
+    <div class="content">
+
+      <div class="container-fluid">
+        <div class="row justify-content-md-center">
+          <div class="col-xl-5 mt-3">
+            <div class="" style="padding: 30px;">
+              <div class="user-image">
+                <img src="assets/images/user.svg" width="130" />
+              </div>
+              <table class="table">
+                <tr>
+                  <td width="200">First name</td>
+                  <td *ngIf="user.firstName">: {{ user.firstName }}</td>
+                  <td *ngIf="!user.firstName">: N/A</td>
+                </tr>
+                <tr>
+                  <td>Last name</td>
+                  <td *ngIf="user.lastName">: {{ user.lastName }}</td>
+                  <td *ngIf="!user.lastName">: N/A</td>
+                </tr>
+                <tr>
+                  <td>Email address</td>
+                  <td *ngIf="user.emailAddress">: {{ user.emailAddress }}</td>
+                  <td *ngIf="!user.emailAddress">: N/A</td>
+                </tr>
+                <tr>
+                  <td>Phone #</td>
+                  <td *ngIf="user.phoneNumber">: {{ user.phoneNumber }}</td>
+                  <td *ngIf="!user.phoneNumber">: N/A</td>
+                </tr>
+                <tr>
+                  <td>Role</td>
+                  <td *ngIf="user.roleDescription">: {{ user.roleDescription }}</td>
+                  <td *ngIf="!user.roleDescription">: N/A</td>
+                </tr>
+                <tr>
+                  <td>Organization name</td>
+                  <td *ngIf="user.organizationName">: {{ user.organizationName }}</td>
+                  <td *ngIf="!user.organizationName">: N/A</td>
+                </tr>
+                <tr>
+                  <td>Designation</td>
+                  <td *ngIf="user.designation">: {{ user.designation }}</td>
+                  <td *ngIf="!user.designation">: N/A</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

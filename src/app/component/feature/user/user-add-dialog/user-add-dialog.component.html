@@ -1,0 +1,95 @@
+<h4 mat-dialog-title><i class="fas fa-plus mr-1"></i> Add User</h4>
+
+<mat-dialog-content class="mat-typography">
+<div>
+    <form class="example-form input-content" [formGroup]="form">
+        
+
+
+        
+      
+        <!-- main table -->
+
+
+        <!-- <mat-form-field class="example-full-width">
+            <mat-label>Organization</mat-label>
+            <mat-select formControlName="organizationId">
+                <mat-option *ngFor="let allOrganizations of allOrganizations" [(value)]="allOrganizations.id">
+                    {{allOrganizations.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+        <mat-form-field [hidden]="checkRole()" class="example-full-width">
+            <mat-label>Organization</mat-label>
+            <mat-select  formControlName="organizationId">
+                <mat-option *ngFor="let allOrganizations of allOrganizations" [value]="allOrganizations.id">
+                    {{allOrganizations.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width">
+            <mat-label>First name</mat-label>
+            <input type="text" matInput formControlName="firstName">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Last name</mat-label>
+            <input type="text" matInput formControlName="lastName">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput #input formControlName="emailAddress" >
+            
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" >
+            <mat-label>Password</mat-label>
+            <input type="password" autocomplete="off" matInput formControlName="password">
+            <mat-hint align="end" style="color: rgb(162, 170, 177) !important;">Between 5 to 10 characters</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Contact</mat-label>
+            <input type="text" matInput formControlName="phoneNumber">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="roleId">
+                <mat-option *ngFor="let allRole of allRoles" [(value)]="allRole.id">
+                    {{allRole.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Designation</mat-label>
+            <input type="text" matInput formControlName="designation">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Status</mat-label>
+            <mat-select matInput formControlName="status">
+            <mat-option [value]="1">Active</mat-option>
+            <mat-option [value]="2">Inactive</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- /main -->
+    </form>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+    <button class="btn btn-success  float-right mr-2"  type="submit" [disabled]="!form.valid"  (click)="addUserData($event)"><i class="fas fa-plus mr-1"></i> Add</button> 
+
+    <button class="btn btn-light  float-right" 
+    (click)="closeDialog()"><i class="fas fa-times mr-1" ></i> Cancel</button> 
+    
+  </mat-dialog-actions>
+
+  

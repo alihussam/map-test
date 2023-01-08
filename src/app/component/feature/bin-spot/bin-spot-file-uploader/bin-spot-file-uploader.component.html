@@ -1,0 +1,71 @@
+<h4 mat-dialog-title><i class="fas fa-plus mr-2"></i> File Uploader</h4>
+
+<mat-dialog-content class="mat-typography">
+    <!-- <div class="row mt-2">
+        <div class="col">
+            <h3><b>Please choose file of type : xls, xlsx or csv</b></h3>
+        </div>
+    </div>
+    <div class="row mt-2 mb-2">
+        comment here
+        <input type="file" name="file" ng2FileSelect [uploader]="uploader"/>
+        <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length" >
+            Upload
+        </button>
+        comment here
+
+        <div class="col-3">
+            <button (click)="chooseFile()" class="btn btn-primary">Choose File</button>
+            <span style="visibility: hidden; position: absolute; overflow: hidden; width: 0px; height:0px;border:none;margin:0; padding:0">
+                <input type="file" id="fileInput" #fileInput ng2FileSelect [uploader]="uploader" />
+            </span>
+        </div>
+        <div class="col-9">
+            <p class="mt-2" style="text-align: left;font-size: medium;"><b>Name: <span style="color: blue;">{{fileName}}</span> Size: <span style="color:blue;">{{ fileSize/1024/1024 | number:'.2' }} MB</span></b></p>
+        </div>
+    </div> -->
+
+    <form class="example-form" [formGroup]="form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Geofence</mat-label>
+            <mat-select formControlName="geofenceId">
+                <mat-option *ngFor="let geofence of allGeofences" [(value)]="geofence.id">
+                    {{geofence.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <div class="row">
+            <div class="col">
+                <div class="progress form-group" *ngIf="progress >= 0">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress"></div>
+                </div>                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3 mt-2">
+                <button class="btn btn-success" (click)="chooseFile()">Choose File</button>
+                <span style="visibility: hidden; position: absolute; overflow: hidden; width: 0px; height:0px;border:none;margin:0; padding:0">
+                    <input class="mt-4" id="myInput" #myInput  type="file" name="file" (change)="fileProgress($event)" /> 
+                </span>
+            </div>
+            <div class="col-8">
+                <p class="mt-2" style="text-align: left;font-size: medium;"><b>Name: <span style="color: blue;">{{fileName}}</span> <br>Size: <span style="color:blue;">{{ fileSize/1024/1024 | number:'.2' }} MB</span></b></p>
+            </div>
+        </div>
+
+    </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <!-- <button type="button" class="btn btn-success btn-s mr-2" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length" >
+        Upload
+    </button> -->
+    <button type="button" class="btn btn-success btn-s mr-2" (click)="onSubmit()" [disabled]="fileData === null || !form.valid" >
+        Submit
+    </button>
+    <button class="btn btn-light  float-right" (click)="closeDialog()"><i class="fas fa-times mr-1" ></i> Cancel</button> 
+</mat-dialog-actions>
+

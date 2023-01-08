@@ -1,0 +1,188 @@
+<div class="agm-map">
+  <agm-map class="agm-map" (mapClick)="deFocusMap($event)" (mouseout)="deFocusMap($event)" [latitude]="mapLat" [longitude]="mapLng" [zoom]="mapZoom" [mapTypeId]="mapType" >
+
+    <agm-marker [id]="binSpotMarker.devEui" style="margin-top: 60px;" *ngFor="let binSpotMarker of binSpotMarkers"
+                [latitude]="binSpotMarker.lat" [longitude]="binSpotMarker.lng" [opacity]="binSpotMarker.alpha"
+                [markerDraggable]="false" (markerClick)="selectMarker(binSpotMarker, $event)" (mouseOver)="onMouseOver(infoWindow, $event)"
+                (mouseOut)="onMouseOut(infoWindow, $event)" [iconUrl]="{
+                              url: binSpotMarker.iconUrl,
+                              scaledSize: {
+                                width: myw,
+                                height: myh
+                              }
+                          }" [label]="{
+                            color: binSpotMarker.color,
+                            fontWeight: 'bold',
+                            text: binSpotMarker.label,
+                            fontSize: lblsize
+                          }">
+
+      <agm-info-window #infoWindow>
+        <div style="font-size: 15px; color:#111;">
+          <strong>Bin Status:</strong><br />
+          <div>===============================</div>
+          <br />
+          <strong>DevEui: {{ binSpotMarker.devEui }}</strong>
+          <br />
+          <strong *ngIf="binSpotMarker.spotName !== null">Bin Name: {{ binSpotMarker.spotName }}</strong>
+          <strong *ngIf="binSpotMarker.spotName === null">Bin Name: N/A </strong>
+          <br />
+          <strong *ngIf="binSpotMarker.sensorName !== null">Sensor Name: {{ binSpotMarker.sensorName }}</strong>
+          <strong *ngIf="binSpotMarker.sensorName === null">Sensor Name: N/A </strong>
+          <br />
+          <strong *ngIf="binSpotMarker.fillPercent !== null">Fill: {{ binSpotMarker.fillPercent }} %</strong>
+          <strong *ngIf="binSpotMarker.fillPercent === null">Fill: N/A</strong>
+          <br />
+          <strong *ngIf="binSpotMarker.temperature !== null">Temperature: {{ binSpotMarker.temperature
+            }}</strong>
+          <strong *ngIf="binSpotMarker.temperature === null">Temperature: N/A</strong>
+          <br />
+          <strong *ngIf="binSpotMarker.status !== null">Status: {{ getStatusValue(binSpotMarker.status) }}</strong>
+          <strong *ngIf="binSpotMarker.status === null">Status: N/A</strong>
+          <br />
+          <strong *ngIf="binSpotMarker.deviceDatetime != null ">Last Updated: {{ binSpotMarker.deviceDatetime
+            }}</strong>
+          <strong *ngIf="binSpotMarker.deviceDatetime === null ">Last Updated: {{ binSpotMarker.elaspTime }}</strong>
+          <br />
+        </div>
+      </agm-info-window>
+      <agm-overlay *ngIf="binSpotMarker.devEui === focusedDevEui" [latitude] = "binSpotMarker.lat" [longitude] = "binSpotMarker.lng" >
+        <div class="pulse"></div>
+      </agm-overlay>
+    </agm-marker>
+  </agm-map>
+</div>
+
+<div class="main-db">
+  <div class=" content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-3">
+            <mat-form-field class=" example-full-width mat-select-position ">
+              <!-- <mat-label>Filter by status</mat-label> -->
+              <mat-select [value]="selectedStatusFilter" disableOptionCentering panelClass="myPanelClass"
+                          class="mat-select-map mat-select-display">
+                <mat-option *ngFor="let filters of allStatusFilters" [value]="filters.value"
+                            (click)="getFilteredSession(filters.value, false)">
+                  {{filters.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-3">
+            <!--              <div class="px-2 py-2">-->
+            <!--                <input type="text" placeholder="Search" class="form-control form-control-sm input-custom"-->
+            <!--                  (keyup)="applyFilter($event)" />-->
+            <!--              </div>-->
+            <input class="form-control form-control-sm input-custom" type="text" placeholder="Search Map"
+                   (keyup)="applyFilter($event)" />
+          </div>
+          <div class="col-xl-6">
+            <div class="float-right pt-1">
+              <!-- <h3>9th Ave, St Pete Beach, FL 33706</h3> -->
+              <!-- <div class="color-name">
+                <h4><span class="cc red"></span>Full</h4>
+                <h4><span class="cc orange"></span>Partial</h4>
+                <h4><span class="cc green"></span> Empty</h4>
+              </div> -->
+              
+<div class="color-name" *ngFor="let colors of binSpotColorList">
+  <h4><span [style.background-color]="colors.fullColor" class="box-content cc" style="padding: 7px;" ></span>Full</h4>
+  <h4><span [style.background-color]="colors.partialFullColor" class="box-content cc" style="padding: 7px;" ></span>Partial</h4>
+  <h4><span [style.background-color]="colors.emptyColor" class="box-content cc" style="padding: 7px;" ></span> Empty</h4>
+  <!-- <h4><span [style.background-color]="colors.fallenColor" class="box-content cc" style="padding: 7px;" ></span> Fallen</h4> -->
+  <!-- <h4><span [style.background-color]="colors.fireColor" class="box-content cc" style="padding: 7px;" ></span> Fire</h4> -->
+            </div>
+          </div>
+        </div>
+        <div class="left-map-box">
+          <!-- <h2 class="px-2 pt-2 text-center">session expired</h2> -->
+          <!--          <ul class="nav nav-pills" role="tablist">-->
+          <!--            <li class="nav-item">-->
+          <!--              <a class="nav-link active" data-toggle="tab" href="#current" (click)="getCurrentSessions()">Current-->
+          <!--                Bin Status</a>-->
+          <!--            </li>-->
+          <!--&lt;!&ndash;            <li class="nav-item">&ndash;&gt;-->
+          <!--&lt;!&ndash;              <a class="nav-link" data-toggle="tab" href="#past" (click)="getPastSessions()">History</a>&ndash;&gt;-->
+          <!--&lt;!&ndash;            </li>&ndash;&gt;-->
+          <!--          </ul>-->
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div id="current" class="tab-pane active">
+              <h3 class="title-left-status">Bin Status</h3>
+              <!--              <div class="px-2 py-2">-->
+              <!--                <input type="text" placeholder="Search" class="form-control form-control-sm input-custom"-->
+              <!--                  (keyup)="applyFilter($event)" />-->
+              <!--              </div>-->
+              <div>
+              </div>
+              <div class="" style="padding-top: 50px;">
+                <a *ngFor="let currentExpiredSessionObject of currentExpiredSessionList"
+                   (click)="focusMap(currentExpiredSessionObject)">
+                  <div class="contentList">
+                    <!-- <h4 [style.background-color]="" class="red-text color-name"> -->
+                      <h4 [style.background-color]="" class="color-name">
+                      <!-- <span [ngClass]=getClass(currentExpiredSessionObject.trashCanStatus.toString())></span> -->
+                      <!-- <span [ngClass]=getClass(currentExpiredSessionObject.trashCanStatus)></span> -->
+                      <span  [style.background-color]="currentExpiredSessionObject.statusColor" class="box-content cc" style="padding: 5px;" ></span>
+                      {{ currentExpiredSessionObject.spotName }}
+                      <small class="float-right">{{
+                        getStatusValue(currentExpiredSessionObject.trashCanStatus)
+                        }}
+                      </small>
+                    </h4>
+                    <h4 class="spot">
+                      <small>{{ convertMinutesToString(currentExpiredSessionObject.elaspTime,
+                        currentExpiredSessionObject.trashCanStatus == 'FULL') }} </small>
+                      <small class="float-right">
+                        <!--                          {{ currentExpiredSessionObject.occupiedDuration }}-->
+                        <a (click)="currentExpiredSessionDialog(currentExpiredSessionObject)"> <span
+                          class="fa fa-ellipsis-h mr-2"></span></a>
+                      </small>
+                    </h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!--            <div id="past" class="tab-pane fade">-->
+            <!--              <div class="px-2 py-2">-->
+            <!--                <nz-range-picker class="mr-2" [nzSize]="ngZoroSize" [(ngModel)]="pastSessionDateRange"-->
+            <!--                  (ngModelChange)="getPastSessionsByDateRange($event)">-->
+            <!--                </nz-range-picker>-->
+            <!--              </div>-->
+            <!--              <div class="expired-main">-->
+            <!--                <div class="content" *ngFor="let currentExpiredSessionObject of pastExpiredSessionList"-->
+            <!--                  (click)="focusMap(currentExpiredSessionObject)">-->
+            <!--                  <h4 class="red-text">-->
+            <!--                    {{ currentExpiredSessionObject.spotName }}-->
+            <!--                    <small class="float-right">{{-->
+            <!--                      currentExpiredSessionObject.trashCanStatus-->
+            <!--                      }}</small>-->
+            <!--                  </h4>-->
+            <!--                  <h4 class="spot">-->
+            <!--                    <a (click)="pastExpiredSessionDialog(currentExpiredSessionObject)">{{-->
+            <!--                      currentExpiredSessionObject.deviceDatetime }}</a>-->
+            <!--                    <small class="float-right">{{-->
+            <!--                      currentExpiredSessionObject.occupiedDuration-->
+            <!--                      }} </small>-->
+            <!--                  </h4>-->
+            <!--                </div>-->
+            <!--              </div>-->
+            <!--            </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group searchFilter" style="width:110px;margin-top:60px">
+    <select class="form-control bg-dark text-white"  #mySelect
+    (change)='wt(mySelect.value)'  [(ngModel)]="mapView">
+      <option value="terrain">Terrain</option>
+      <option value="satellite">Satellite</option>     
+    </select>
+  </div>
+
+</div>

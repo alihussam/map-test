@@ -1,0 +1,45 @@
+<!-- <div>
+    <app-header *ngIf="router.url !== '/login'"></app-header>
+
+    <router-outlet></router-outlet>
+
+    <app-footer></app-footer>
+    
+</div> -->
+
+<!--Latest-->
+<!-- <ng-template [ngIf]="tokenStorage.getToken() !== null">
+    <div>
+      <app-header></app-header>
+  
+      <router-outlet></router-outlet>
+  
+      <app-footer></app-footer>
+    </div>
+  </ng-template> -->
+
+<!-- <ng-template [ngIf]="tokenStorage.getToken() === null">
+
+    <div *ngIf ="resetToken === undefined">
+      <app-login></app-login>
+    </div>
+    <div *ngIf ="resetToken !== undefined">
+      <app-add-new-password></app-add-new-password>
+    </div>
+ 
+  </ng-template> -->
+
+<!-- Testing-->
+<div>
+  <div *ngIf="tokenStorage.getToken() !== null">
+    <app-header></app-header>
+    <!-- <app-left-side-menu></app-left-side-menu> -->
+  </div>
+
+  <ngx-ui-loader></ngx-ui-loader>
+  <router-outlet></router-outlet>
+
+  <div *ngIf="tokenStorage.getToken() !== null">
+    <app-footer></app-footer>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+<h4 mat-dialog-title><i class="fas fa-plus mr-2"></i> Add Bin Spot color</h4>
+
+<mat-dialog-content class="mat-typography">
+    <div>
+        <form class="example-form input-content" [formGroup]="form">
+           
+           
+            <mat-form-field [hidden]="checkRole()" class="example-full-width">
+                <mat-label>Organization</mat-label>
+                <mat-select  formControlName="organizationId">
+                    <mat-option *ngFor="let allOrganizations of allOrganizations" [value]="allOrganizations.id">
+                        {{allOrganizations.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+           
+
+           
+            <!-- <mat-form-field class="example-full-width">
+                <mat-label>Organization</mat-label>
+                <input type="text" matInput formControlName="organizationId">
+            </mat-form-field> -->
+
+
+            <!-- <mat-form-field class="example-full-width">
+                <mat-label>platformName</mat-label>
+                <input type="text"  matInput formControlName="platformName">
+            </mat-form-field> -->
+
+
+
+            <mat-form-field class="example-full-width">
+                <mat-label>platformName</mat-label>
+                <mat-select matInput formControlName="platformName" >
+                <mat-option value="WEB">web</mat-option>
+                <mat-option value="MOBILE">mobile</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+
+
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Full Color</mat-label>
+                <input  type="color" matInput formControlName="fullColor">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" >
+                <mat-label >Full Text</mat-label>
+                <input type="text" matInput formControlName="fullText">
+            </mat-form-field>
+           
+
+            <!-- amk -->
+            <mat-form-field class="example-full-width">
+                <mat-label>Partial Full Color</mat-label>
+                <input type="color" matInput formControlName="partialFullColor">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Partial Full Text</mat-label>
+                <input type="text" matInput formControlName="partialFullText">
+            </mat-form-field>
+
+
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Empty Color</mat-label>
+                <input type="color" matInput formControlName="emptyColor">
+            </mat-form-field>
+
+
+         
+            <mat-form-field class="example-full-width">
+                <mat-label>Empty Text</mat-label>
+                <input type="text" matInput formControlName="emptyText">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Fire Color</mat-label>
+                <input type="color" matInput formControlName="fireColor">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Fire Text</mat-label>
+                <input type="text" matInput formControlName="fireText">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Fallen Color</mat-label>
+                <input type="color" matInput formControlName="fallenColor">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Fallen Text</mat-label>
+                <input type="text" matInput formControlName="fallenText">
+            </mat-form-field>
+          
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Status</mat-label>
+                <mat-select matInput formControlName="status">
+                <mat-option [value]="1">Active</mat-option>
+                <mat-option [value]="2">Inactive</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- amk -->
+           
+
+
+           
+
+
+        </form>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="btn btn-success float-right mr-2" type="submit" [disabled]="!form.valid" (click)="addBinSpotColor($event)">
+        <i class="fas fa-plus mr-1"></i> Add</button>
+    <button class="btn btn-light float-right" (click)="closeDialog()">
+        <i class="fas fa-times mr-1"></i> Cancel
+    </button>
+</mat-dialog-actions>

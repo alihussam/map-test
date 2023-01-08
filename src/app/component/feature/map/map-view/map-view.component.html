@@ -1,0 +1,85 @@
+<agm-map 
+   [latitude]="maplat"
+   [longitude]="maplng"
+   [zoom]="mapZoom"
+   (zoomChange)="bale($event)"
+   [mapTypeId]='mapType'>
+      <agm-polygon [fillColor]="polygonData.fillColor" [fillOpacity]="polygonData.fillOpacity" 
+         [polyDraggable]="false" [paths]="polygonData.ZonePaths" (polyClick)="polyclick($event)">
+      </agm-polygon>
+      <agm-marker
+      style="margin-top: 60px;"
+      *ngFor="let parkingspotMarker of parkingspotMarkers"
+      [latitude]="parkingspotMarker.lat"
+      [longitude]="parkingspotMarker.lng"
+      [opacity]="parkingspotMarker.alpha"
+      [markerDraggable]="false"
+      (mouseOver)="onMouseOver(infoWindow, $event)"
+      (mouseOut)="onMouseOut(infoWindow, $event)"
+      [iconUrl]="{
+         url: parkingspotMarker.iconUrl,
+         scaledSize: {
+         width: myw,
+         height: myh
+         }
+      }"
+      [label]="{
+         color: parkingspotMarker.color,
+         fontWeight: 'bold',
+         text: parkingspotMarker.label,
+         fontSize: lblsize
+       }"
+   >
+      <agm-info-window #infoWindow>
+         <div style="font-size: 15px; font-weight: bold">
+            <strong>Bin Status:</strong><br />
+          </div>
+          <div>===============================</div>
+          <br />
+          <strong>DevEui: {{ parkingspotMarker.devEui }}</strong>
+          <br />
+          <strong>Height : {{ parkingspotMarker.height }}</strong>
+          <br />
+          <strong>Status : {{ parkingspotMarker.status }}</strong>
+          <br />
+          <strong>Bin : {{ parkingspotMarker.spotName }}</strong>
+          <br />
+          <strong>Sensor Name : {{ parkingspotMarker.sensorName }}</strong>
+          <br />
+          <strong>Date Time : {{ parkingspotMarker.date_time }}</strong>
+          <br />
+    
+          <strong>Level Status: {{ parkingspotMarker.level | number:'1.0-2' }} %</strong>
+    
+          <div *ngIf="parkingspotMarker.status == 'full' ">
+            <strong>Elasped Time : {{ parkingspotMarker.elasp_time }}</strong>
+            <br />
+          </div>
+
+          
+    
+      <!-- <strong
+        >Duration:
+        <span *ngIf="parkingspotMarker.statusOccupied">{{
+          parkingspotMarker.occupiedDuration
+        }}</span>
+      </strong>
+      <br />
+      <strong
+        >Number of transaction:
+        <span *ngIf="parkingspotMarker.numberOfTrn > 0">{{
+          parkingspotMarker.numberOfTrn
+        }}</span>
+      </strong>
+      <br /> -->
+      </agm-info-window>
+   </agm-marker>   
+</agm-map>
+
+<div class="form-group searchFilter" style="width:110px;margin-top:60px">
+   <select class="form-control bg-dark text-white"  #mySelect
+   (change)='wt(mySelect.value)'  [(ngModel)]="mapView">
+     <option value="terrain">Terrain</option>
+     <option value="satellite">Satellite</option>     
+   </select>
+ </div>

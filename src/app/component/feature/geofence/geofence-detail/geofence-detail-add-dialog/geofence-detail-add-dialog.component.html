@@ -1,0 +1,45 @@
+<h4 mat-dialog-title><i class="fas fa-plus mr-1"></i> Add Geofence Detail</h4>
+
+<mat-dialog-content class="mat-typography">
+  <div>
+    <form class="example-form" [formGroup]="form">
+      <!-- <mat-form-field class="example-full-width">
+            <mat-label>Geofence</mat-label>
+            <mat-select formControlName="geofenceid">
+                <mat-option *ngFor="let geofence of allGeofence" [value]="geofence.id">
+                    {{geofence.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Sequence</mat-label>
+        <input matInput formControlName="sequence" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Latitude</mat-label>
+        <input matInput formControlName="latitude" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Longitude</mat-label>
+        <input matInput formControlName="longitude" />
+      </mat-form-field>
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    class="btn btn-success btn-sm float-right mr-2"
+    type="submit"
+    [disabled]="!form.valid"
+    (click)="addGeofenceDetailData()"
+  >
+    <i class="fas fa-plus mr-1"></i> Add Geofence Detail
+  </button>
+
+  <button class="btn btn-light btn-sm float-right" (click)="closeDialog()">
+    <i class="fas fa-times mr-1"></i> Cancel
+  </button>
+</mat-dialog-actions>

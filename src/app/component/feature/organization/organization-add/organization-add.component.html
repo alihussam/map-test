@@ -1,0 +1,129 @@
+<h4 mat-dialog-title><i class="fas fa-plus mr-1"></i> Add Organization</h4>
+
+<mat-dialog-content class="mat-typography">
+<div>
+    <form class="example-form input-content" [formGroup]="form">   
+
+
+        <!-- //    {
+            //     "name": "Conure Telecom",
+            //     "address": "US",
+            //     "phoneNumber1": "12345",    
+            //     "phoneNumber2": "12345",
+            //     "emailAddress": "conurets@cts.com",
+            //     "postalCode":"12345",
+            //     "city": "Atlanta 123",
+            //     "state": "Florida",
+            //     "country": "US",
+            //     "status": 1
+            // } -->
+      
+      
+      <!--main table  -->
+        <mat-form-field class="example-full-width">
+            <mat-label>Organization Name</mat-label>
+            <input  matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Email Address</mat-label>
+            <input matInput formControlName="emailAddress">
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Contact</mat-label>
+            <input  matInput formControlName="phoneNumber1">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address">
+        </mat-form-field> 
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Latitude</mat-label>
+            <input type="number" matInput formControlName="latitude">
+        </mat-form-field> 
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Longitude</mat-label>
+            <input type="number" matInput formControlName="longitude">
+        </mat-form-field> 
+        
+
+        <!-- <mat-form-field class="example-full-width">
+            <mat-label>Phone #2</mat-label>
+            <input matInput formControlName="phoneNumber2">
+        </mat-form-field> -->
+
+       
+<!-- 
+        <mat-form-field class="example-full-width">
+            <mat-label>Postal Code</mat-label>
+            <input matInput formControlName="postalCode">
+        </mat-form-field> -->
+     
+      
+        <mat-form-field class="example-full-width">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city">
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+            <mat-label>State</mat-label>
+            <input matInput formControlName="state">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="country">
+        </mat-form-field>
+        
+         
+
+         <mat-form-field class="example-full-width">
+            <mat-label>Status</mat-label>
+            <mat-select matInput formControlName="status">
+            <mat-option [value]="1">Active</mat-option>
+            <mat-option [value]="2">Inactive</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- <mat-slide-toggle class="example-full-width">Slide me!
+
+
+
+        </mat-slide-toggle> -->
+
+
+        
+
+        
+
+        <!-- <mat-form-field class="example-full-width">
+            <mat-label>Phone #2</mat-label>
+            <input matInput formControlName="phoneNumber2">
+        </mat-form-field> -->
+
+       
+
+        <!-- <mat-form-field class="example-full-width">
+            <mat-label>Postal Code</mat-label>
+            <input matInput formControlName="postalCode">
+        </mat-form-field> -->
+        
+
+    </form>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+    <button class="btn btn-success  float-right mr-2"  type="submit" [disabled]="!form.valid"  (click)="addOrganizationData($event)"><i class="fas fa-plus mr-1"></i> Add Organization</button> 
+
+    <button class="btn btn-light  float-right" 
+    (click)="closeDialog()"><i class="fas fa-times mr-1" ></i> Cancel</button> 
+    
+  </mat-dialog-actions>
+
+  

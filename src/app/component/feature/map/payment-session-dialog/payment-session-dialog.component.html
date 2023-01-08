@@ -1,0 +1,42 @@
+<mat-dialog-content class="">
+    <h3 class="mb-3">
+        <i class="fas fa-check-circle mr-1"></i> Payment Live Expired Session
+    </h3>
+    <div>
+        <h3 class="float-left red-text">{{ liveSessionObject.spotName }} ({{ liveSessionObject.sessionId }})</h3>
+    </div>
+    <table class="table">
+        <tr>
+            <td>Occupied datetime</td>
+            <td>{{liveSessionObject.occupiedDateTime}}</td>
+        </tr>
+        <tr>
+            <td>Action datetime</td>
+            <td>{{liveSessionObject.actionDateTime}}</td>
+        </tr>
+        <tr>
+            <td>Ticket given</td>
+            <td>{{liveSessionObject.ticketNumber}}</td>
+        </tr>
+    </table>
+
+    <table class="table">
+        <tr>
+            <td>Start time</td>
+            <td>End time</td>
+            <td>Duration</td>
+            <td>Amount</td>
+        </tr>
+        <tr *ngFor="let spotPaymentObject of spotPaymentList">
+            <td>{{spotPaymentObject.startTime}}</td>
+            <td>{{spotPaymentObject.endTime}}</td>
+            <td>{{spotPaymentObject.duration}}</td>
+            <td>{{spotPaymentObject.amount}}</td>
+        </tr>
+    </table>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="btn btn-light float-right" (click)="closeDialog()">
+        <i class="fas fa-times mr-1"></i> Close</button>
+</mat-dialog-actions>

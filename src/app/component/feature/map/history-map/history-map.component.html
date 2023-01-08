@@ -1,0 +1,64 @@
+<agm-map
+  [latitude]="maplat"
+  [longitude]="maplng"
+  [zoom]="mapZoom"
+  (zoomChange)="bale($event)"
+  [mapTypeId]="mapType"
+>
+  <agm-direction [origin]="origin" [destination]="destination" [waypoints]="waypoints"></agm-direction>
+</agm-map>
+
+<div class="form-group searchFilter" style="width: 112px; margin-top: 60px;">
+  <select
+    class="form-control bg-dark text-white"
+    #mySelect
+    (change)="wt(mySelect.value)"
+    [(ngModel)]="mapView"
+  >
+    <option value="terrain">Terrain</option>
+    <option value="satellite">Satellite</option>
+  </select>
+</div>
+<div class="topMenu-h" style="margin-top: 60px;">
+  <h4 class="titleMenu">
+    <i class="fas fa-bars mr-2" (click)="toggleDisplay()"></i> History
+  </h4>
+  <div>
+    <div class="">
+      <input
+        class="form-control-sm form-control"
+        type=""
+        placeholder="Tracker ID"
+      />
+    </div>
+    <div class="">
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <!-- <input
+        class="form-control-sm form-control"
+        type=""
+        placeholder="Date: 09/07/2020"
+      /> -->
+    </div>
+    <div class="ch">
+      <div class="bh">
+        <h6>405 Hood Road North West</h6>
+        <p>09:49 to 10:40 (52min, 18sec)</p>
+        <p>Max Speed : 55mph</p>
+        <p>Project : test1</p>
+        <p>Stop Duration : 2hr, 13 min</p>
+      </div>
+      <div class="bh">
+        <h6>405 Hood Road North West</h6>
+        <p>09:49 to 10:40 (52min, 18sec)</p>
+        <p>Max Speed : 55mph</p>
+        <p>Project : test1</p>
+        <p>Stop Duration : 2hr, 13 min</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<h4 mat-dialog-title><i class="fas fa-pen mr-1"></i> Update Bin Spot Configuration</h4>
+
+<mat-dialog-content class="mat-typography">
+    <div>
+        <form class="example-form input-content" [formGroup]="form">
+
+
+
+            <mat-form-field [hidden]="checkRole()" class="example-full-width">
+                <mat-label>Organization</mat-label>
+                <mat-select  formControlName="organizationId" disabled>
+                    <mat-option *ngFor="let allOrganizations of allOrganizations" [value]="allOrganizations.id" disabled>
+                        {{allOrganizations.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint align="end" style="color: rgb(162, 170, 177) !important;" >Non Editable</mat-hint>
+            </mat-form-field>
+
+
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Sensor Type</mat-label>
+                <mat-select matInput formControlName="sensorType" disabled >
+                <mat-option value="TCP">TCP</mat-option>
+                <mat-option value="LoRaWAN">LoRaWAN</mat-option>
+                </mat-select>
+                <mat-hint align="end" style="color: rgb(162, 170, 177) !important;" >Non Editable</mat-hint>
+
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Bin Name</mat-label>
+                <input type="text" matInput formControlName="binName">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Latitude</mat-label>
+                <input type="number" matInput formControlName="latitude">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Longitude</mat-label>
+                <input type="number" matInput formControlName="longitude">
+            </mat-form-field>
+            <!-- <mat-form-field class="example-full-width">
+                <mat-label>Geofence</mat-label>
+                <mat-select formControlName="geofenceId">
+                    <mat-option *ngFor="let geofence of allGeofences" [(value)]="geofence.id">
+                        {{geofence.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> -->
+            <!-- <mat-form-field class="example-full-width">
+                <mat-label>Sensor Name</mat-label>
+                <input type="text" matInput formControlName="sensorName">
+            </mat-form-field> -->
+            <mat-form-field class="example-full-width">
+                <mat-label>Device Id</mat-label>
+                <input type="text" matInput formControlName="deviceId">
+            </mat-form-field>
+
+
+            <!-- amk -->
+            <mat-form-field class="example-full-width" >
+                <mat-label>Percentage of Full</mat-label>
+                <input type="number" max="100" matInput formControlName="percentageOfFull">
+                 <mat-hint align="end" style="color: rgb(162, 170, 177) !important;">Minimum 40%</mat-hint> <!-- //Adjusted 75% to 40% for small bin testing after Salman Haider Request -->
+
+            </mat-form-field>
+            <mat-form-field class="example-full-width" >
+                <mat-label>Percentage of Empty</mat-label>
+                <input type="number" min="5"  matInput formControlName="percentageOfEmpty">
+                <mat-hint align="end" style="color: rgb(162, 170, 177) !important;" >Maximum 25%</mat-hint> <!-- //Adjusted 40% to 25% for small bin testing after Salman Haider Request to accomodate Partial -->
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label> Frequently used limit </mat-label>
+                <input type="number"  matInput formControlName="frequentlyUsedLimit">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>BinType</mat-label>
+              <mat-select  formControlName="binTypeId">
+                <mat-option *ngFor="let binTypeData of allBinTypes" [value]="binTypeData.id">
+                  {{binTypeData.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Status</mat-label>
+                <mat-select matNativeControl formControlName="status">
+                    <mat-option *ngFor="let statusObject of statusList" [(value)]="statusObject.id">
+                        {{statusObject.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- <mat-form-field class="example-full-width">
+                <mat-label>Status</mat-label>
+                <mat-select matInput formControlName="status">
+                <mat-option [value]="1">Active</mat-option>
+                <mat-option [value]="2">Inactive</mat-option>
+                </mat-select>
+            </mat-form-field> -->
+
+            <!-- amk -->
+
+        </form>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="btn btn-warning  float-right mr-2" type="submit"  [disabled]="!form.valid" (click)="updateParkingSpot()">
+        <i class="fas fa-pen mr-1"></i> Update</button>
+    <button class="btn btn-light float-right" (click)="closeDialog()">
+        <i class="fas fa-times mr-1"></i> Cancel</button>
+</mat-dialog-actions>

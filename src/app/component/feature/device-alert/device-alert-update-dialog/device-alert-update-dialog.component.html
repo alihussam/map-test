@@ -1,0 +1,83 @@
+<h4 mat-dialog-title><i class="fas fa-plus mr-1"></i> Update Device Alert</h4>
+
+<mat-dialog-content class="mat-typography">
+<div>
+    <form class="example-form input-content" [formGroup]="form">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Device</mat-label>
+            <mat-select formControlName="deviceid">
+                <mat-option *ngFor="let device of allDevices" [(value)]="device.id">
+                    {{device.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Call -->
+        <div class="row">
+            <div class="col-12">
+                <mat-checkbox formControlName="callAlertActive" (change)="resetCallData()">Call Alert</mat-checkbox>
+            </div>
+        </div>
+        
+        
+        <mat-form-field class="example-full-width" [hidden]="callAlertChecked()">
+            <mat-label>Call Alert Start Time</mat-label>
+            <input type="number" matInput formControlName="callAlertStartTime">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" [hidden]="callAlertChecked()">
+            <mat-label>Call Alert End Time</mat-label>
+            <input type="number" matInput formControlName="callAlertEndTime">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" [hidden]="callAlertChecked()">
+            <mat-label>Call Alert Type</mat-label>
+            <input matInput formControlName="callAlertType">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" [hidden]="callAlertChecked()">
+            <mat-label>Call Threshold</mat-label>
+            <input type="number" matInput formControlName="callThreshold">
+        </mat-form-field>
+
+
+        <!-- SMS -->
+        <div class="row">
+            <div class="col-12">
+                <mat-checkbox formControlName="smsAlertActive" (change)="resetSmsData()">SMS Alert</mat-checkbox>
+            </div>
+        </div>
+
+        <mat-form-field class="example-full-width" [hidden]="smsAlertChecked()">
+            <mat-label>Sms Alert Start Time</mat-label>
+            <input type="number" matInput formControlName="smsAlertStartTime">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" [hidden]="smsAlertChecked()">
+            <mat-label>Sms Alert End Time</mat-label>
+            <input type="number" matInput formControlName="smsAlertEndTime">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" [hidden]="smsAlertChecked()">
+            <mat-label>Sms Alert Type</mat-label>
+            <input matInput formControlName="smsAlertType">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" [hidden]="smsAlertChecked()">
+            <mat-label>Sms Threshold</mat-label>
+            <input type="number" matInput formControlName="smsThreshold">
+        </mat-form-field>
+    </form>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+    <button class="btn btn-success  float-right mr-2"  type="submit" [disabled]="!form.valid"  (click)="updateDeviceAlertData()"><i class="fas fa-plus mr-1"></i> Update</button> 
+
+    <button class="btn btn-light  float-right" 
+    (click)="closeDialog()"><i class="fas fa-times mr-1" ></i> Cancel</button> 
+    
+  </mat-dialog-actions>
+
+  

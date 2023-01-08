@@ -1,0 +1,78 @@
+<mat-dialog-content class="">
+    <table class="table">
+        <tr>
+            <td>Session ID</td>
+            <td>09432433480430</td>
+        </tr>
+        <tr>
+            <td>Spot Number</td>
+            <td>A902</td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td>10/08/2020</td>
+        </tr>
+        <tr>
+            <td>End Time</td>
+            <td>9:15</td>
+        </tr>
+        <tr>
+            <td>Duration</td>
+            <td>3 hr</td>
+        </tr>
+        <tr>
+            <td>Action Taken</td>
+            <td>Ticket given</td>
+        </tr>
+        <tr>
+            <td>09432433480430</td>
+            <td>Edit</td>
+        </tr>
+    </table>
+
+    <form class="example-form" [formGroup]="form">
+        <h3 class="mb-3">
+            <i class="fas fa-check-circle mr-1"></i> Session expired action
+        </h3>
+        <div>
+            <h3 class="float-left red-text">{{ sessionExpired.spotName }} ({{ sessionExpired.sessionId }})</h3>
+            <h3 class="float-right">{{ sessionExpired.occupiedDuration }}</h3>
+        </div>
+        <table class="table">
+            <tr>
+                <td>Ticket given</td>
+                <td align="right">
+                    <mat-slide-toggle class="example-margin" color="primary"
+                        (change)="onChangedTicketGiven($event.source.checked)"></mat-slide-toggle>
+                </td>
+            </tr>
+            <tr *ngIf="isTicketGivenPropertyVisible">
+                <td colspan="2">
+                    <input autocomplete="off" class="form-control form-control-sm input-custom"
+                        formControlName="ticketNumber" placeholder="Ticket No" />
+                </td>
+            </tr>
+            <tr>
+                <td>Vehicle left</td>
+                <td align="right">
+                    <mat-slide-toggle class="example-margin" color="primary"
+                        (change)="onChangedVehicleLeft($event.source.checked)"></mat-slide-toggle>
+                </td>
+            </tr>
+            <tr>
+                <td>Warning given</td>
+                <td align="right">
+                    <mat-slide-toggle class="example-margin" color="primary"
+                        (change)="onChangedWarningGiven($event.source.checked)"></mat-slide-toggle>
+                </td>
+            </tr>
+        </table>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="btn btn-success float-right mr-2" type="submit" [disabled]="!form.valid" (click)="saveAction()">
+        <i class="fas fa-check-circle mr-1"></i> Save</button>
+    <button class="btn btn-light float-right" (click)="closeDialog()">
+        <i class="fas fa-times mr-1"></i> Close</button>
+</mat-dialog-actions>

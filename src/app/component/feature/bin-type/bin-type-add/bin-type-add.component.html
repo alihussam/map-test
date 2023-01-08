@@ -1,0 +1,61 @@
+<h4 mat-dialog-title><i class="fas fa-plus mr-2"></i> Add Bin Type</h4>
+
+<mat-dialog-content class="mat-typography">
+    <div>
+        <form class="example-form input-content" [formGroup]="form">
+           
+           
+            <mat-form-field [hidden]="checkRole()" class="example-full-width">
+                <mat-label>Organization</mat-label>
+                <mat-select  formControlName="organizationId">
+                    <mat-option *ngFor="let allOrganizations of allOrganizations" [value]="allOrganizations.id">
+                        {{allOrganizations.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+           
+
+            <mat-form-field class="example-full-width" >
+                <mat-label >Bin Type</mat-label>
+                <input type="text" matInput formControlName="binType">
+            </mat-form-field>
+           
+
+            <!-- amk -->
+           
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Bin Type Description</mat-label>
+                <input type="text" matInput formControlName="binTypeDescription">
+            </mat-form-field>
+
+         
+            <mat-form-field class="example-full-width">
+                <mat-label> Bin Type Height</mat-label>
+                <input type="number" matInput formControlName="binTypeHeight">
+            </mat-form-field>
+          
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Status</mat-label>
+                <mat-select matInput formControlName="status">
+                <mat-option [value]="1">Active</mat-option>
+                <mat-option [value]="2">Inactive</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- amk -->
+                    
+
+
+        </form>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="btn btn-success float-right mr-2" type="submit" [disabled]="!form.valid" (click)="addBinType($event)">
+        <i class="fas fa-plus mr-1"></i> Add</button>
+    <button class="btn btn-light float-right" (click)="closeDialog()">
+        <i class="fas fa-times mr-1"></i> Cancel
+    </button>
+</mat-dialog-actions>

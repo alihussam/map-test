@@ -1,0 +1,82 @@
+<mat-dialog-content class="">
+    <form class="example-form" [formGroup]="form">
+        <h3 class="mb-3">
+            <i class="fas fa-check-circle mr-1"></i> Past Expired Session Action
+        </h3>
+        <table class="table">
+            <tr>
+                <td>Session id</td>
+                <td>{{sessionExpired.sessionId}}</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>{{sessionExpired.trashCanStatus}}</td>
+            </tr>
+            <tr>
+                <td>Sensor Name</td>
+                <td>{{sessionExpired.sensorName}}</td>
+            </tr>
+            <tr>
+                <td>Spot Name</td>
+                <td>{{sessionExpired.spotName}}</td>
+            </tr>
+            <tr>
+                <td>Latitude</td>
+                <td>{{sessionExpired.latitude}}</td>
+            </tr>
+            <tr>
+                <td>Longitude</td>
+                <td>{{sessionExpired.longitude}}</td>
+            </tr>
+            <tr>
+                <td>Height</td>
+                <td>{{sessionExpired.height}}</td>
+            </tr>
+            <tr>
+                <td>Service Full Time</td>
+                <td>{{sessionExpired.fullTime}}</td>
+            </tr>
+            <tr>
+                <td>Service Empty Time</td>
+                <td>{{sessionExpired.deviceDatetime}}</td>
+            </tr>
+           
+            <tr>
+                <td>
+                    Service Duration
+                </td> 
+                <td>{{sessionExpired.duration}}</td>
+            </tr>
+            <tr>
+                <td>
+                    Trash Load Empty Time 
+                </td> 
+                <td>{{sessionExpired.trashLoadEmptyTime}}</td>
+            </tr>
+
+            <tr>
+                <td>
+                    Trash Load Full Time 
+                </td> 
+                <td>{{sessionExpired.trashLoadFullTime}}</td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    Trash Load  Duration
+                </td>
+                <td>{{sessionExpired.trashLoadTime}}</td>
+            </tr>
+
+          
+        </table>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="btn btn-success float-right mr-2" type="submit" [disabled]="!form.valid" (click)="saveAction()">
+        <i class="fas fa-check-circle mr-1"></i> Save</button>
+    <button class="btn btn-light float-right" (click)="closeDialog()">
+        <i class="fas fa-times mr-1"></i> Close</button>
+</mat-dialog-actions>

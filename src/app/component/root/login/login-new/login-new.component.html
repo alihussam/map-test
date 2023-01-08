@@ -1,0 +1,72 @@
+<div><img src="assets/images/bg.png" class="bg" /></div>
+<h2 class="text-center mb-3" style="padding: 10px; color: #fff; margin-top: 80px;" ngxUiLoaderBlurred blur="100">
+
+</h2>
+
+
+
+<div class="login-form" ngxUiLoaderBlurred blur="100">
+  <div class="login-box" style="margin: auto;">
+    <!-- <div class="card-header text-center"> -->
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h1 class="text-center mb-2 mt-2">
+      <img src="assets/images/ps.png" class="logo" width="120" />
+    </h1>
+    <h2 class="text-center mb-4">Conure Binwise</h2>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+      </div>
+      <input id="email" type="text" class="form-control input-custom" formControlName="username" placeholder="Username"
+        required />
+    </div>
+
+    
+    <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">
+      <h6 class="text-danger mt-1"> field is required</h6>
+  </div>
+<!-- password original -->
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+      </div>
+      <input  id="password" type="password" class="form-control input-custom" formControlName="password"
+        placeholder="Password" required  />
+    </div>
+
+    <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">
+      <h6 class="text-danger mt-1"> field is required</h6>
+  </div>
+
+
+    <!-- <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+      </div>
+      <input id="password" type="password" class="form-control input-custom" formControlName="password"
+        placeholder="Password" required />
+    </div> -->
+
+
+
+
+    <div class="form-group">
+      <button id="loginBtn" type="submit" class="btn orange btn-block" style="font-weight: 700;">
+        Log in
+      </button>
+    </div>
+    <!-- <div class="clearfix">
+      //<label class="pull-left checkbox-inline"><input type="checkbox" /> Remember me</label> 
+      <a (click)="forgetPassword()" class="float-right">Forgot Password</a>
+      //<a (click)="forgetUsername()" class="float-right mr-3">Forget Username</a>
+    </div> -->
+  </form>
+  <footer>
+    <!-- <p class="text-center">© 2022 Conure Binwise | All Rights Reserved.</p> -->
+    <p class="text-center ">&copy; {{currentYear()}} Conure Binwise | All Rights Reserved.</p>
+  </footer>
+<!-- </div> -->
+
+</div>
+</div>

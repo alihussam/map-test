@@ -1,0 +1,134 @@
+<div class="main-db ">
+
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Organization</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="content">
+      <div class="container-fluid mt-2">
+        <div class="row">
+          <div class="col-xl-6">
+            <div class=" ">
+              <input type="text" class="form-control form-control-sm input-custom" (keyup)="applyFilter($event)"
+                placeholder="Search" />
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <button class="btn btn-sm btn-success float-right mr-2" [hidden]="isUserNotSuperAdmin"
+              (click)="addOrganizationDialog()"><i class="fas fa-plus mr-1"></i> Add Organization</button>
+          </div>
+        </div>
+        <div class="container-fluid mt-2">
+          <div class="row">
+            <div class="col-12 mt-2">
+              <div class="db-block" style="height: auto !important;">
+                <div class="table-responsive">
+                  <table mat-table [dataSource]="dataSource" class="gridData" matSort>
+                    <!-- main table -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Organization Name</th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="emailAddress">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Oraganization Email </th>
+                      <td mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="phoneNumber1">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
+                      <td mat-cell *matCellDef="let element"> {{element.phoneNumber1}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="address">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+                      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="city">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
+                      <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="state">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
+                      <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="country">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+                      <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="status">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                      <th mat-header-cell *matHeaderCellDef>Action</th>
+                      <td mat-cell *matCellDef="let element">
+
+                        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton text-warning">
+                          <mat-icon aria-label="Edit" (click)="updateOrganizationDialog(element)">edit</mat-icon>
+                        </button>
+
+                        <button mat-icon-button matTooltip="Click to Delete" (click)="getTempId(element)"
+                          class="iconbutton text-danger" data-toggle="modal" data-target="#deletePrompt">
+                          <mat-icon aria-label="Delete">delete</mat-icon>
+                        </button>
+
+
+                        <!-- model -->
+
+                        <div class="modal fade" id="deletePrompt" tabindex="-1" role="dialog"
+                          aria-labelledby="deletePromptLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="margin: inherit">
+                              <div class="modal-header">
+                                <h5 class="modal-title orange-text" id="deletePromptLabel">Delete Organization </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                Are you sure you want to delete Organization?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" (click)="deleteOrganization(tempId)"
+                                  data-dismiss="modal">Confirm</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                </div>
+                <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
